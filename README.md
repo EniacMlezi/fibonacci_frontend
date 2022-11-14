@@ -1,16 +1,18 @@
 # fibonacci_frontend
 
-A new Flutter project.
+This project gives a front-end for the [Fibonacci API](https://github.com/EniacMlezi/FibonacciApi). The front-end is written in flutter to support almost all platforms (android, ios, windows, linux, macos and web!) out of the box.
 
-## Getting Started
+A live demo of the front-end can be found at: [Demo](https://fibonacciapi20221114115416.azurewebsites.net/#/).
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## overview
+The front-end is split up in multiple widgets (creating a request, displaying a response, displaying request history). 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The FibonacciRequest widget is used to create a form for inputting and validate a request.
+
+When a request is made, the FibonacciResponse widget uses the Future result of said request to either draw a progress indicator, a result or an error.
+
+FibonacciRequestHistory is loaded using pagination and an infinitely scrolling list. Pagination is used so not all History has to be retrieved at once.
+
+When a widget needs to access the API, requests are made through a Service, the FibonacciService. The FibonacciService is injected into the FibonacciHome widget (DI/IoC). The one implementer for the FibonacciService is the ApiFibonacciService. This implementation uses simple HTTP requests to access the API and deserializes the (JSON) responses to objects.
